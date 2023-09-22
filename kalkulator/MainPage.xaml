@@ -16,6 +16,7 @@
                 HorizontalOptions="End"/>
             <Label
                 x:Name="wynikLbl"
+                BackgroundColor="blue"
                 Text="0"
                 FontSize="32"
                 HorizontalOptions="End" />
