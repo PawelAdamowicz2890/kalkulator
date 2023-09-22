@@ -173,7 +173,7 @@ namespace kalkulator
                 isRooted = false;
             }
             else
-                wynikLbl.Text += ".";
+                wynikLbl.Text += ",";
             SemanticScreenReader.Announce(wynikLbl.Text);
         }
         private void OnDelClicked(object sender, EventArgs e)
