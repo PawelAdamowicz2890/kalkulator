@@ -11,6 +11,7 @@ namespace kalkulator
         private double NumTwo;
         private double pr;
         private double FinalNum;
+        private double zam;
 
         public MainPage()
         {
@@ -124,6 +125,8 @@ namespace kalkulator
         }
         private void OnDzClicked(object sender, EventArgs e)
         {
+            if (CalcType != ' ')
+                OnEqClicked(sender, e);
             double.TryParse(wynikLbl.Text, out pr);
             NumOne = pr;
             Oldequals.Text = NumOne.ToString() + " / ";
@@ -134,6 +137,8 @@ namespace kalkulator
         }
         private void OnMnClicked(object sender, EventArgs e)
         {
+            if (CalcType != ' ')
+                OnEqClicked(sender, e);
             double.TryParse(wynikLbl.Text, out pr);
             NumOne = pr;
             Oldequals.Text = NumOne.ToString() + " * ";
@@ -143,6 +148,8 @@ namespace kalkulator
         }
         private void OnOdClicked(object sender, EventArgs e)
         {
+            if (CalcType != ' ')
+                OnEqClicked(sender, e);
             double.TryParse(wynikLbl.Text, out pr);
             NumOne = pr;
             Oldequals.Text = NumOne.ToString() + " - ";
@@ -152,6 +159,8 @@ namespace kalkulator
         }
         private void OnDoClicked(object sender, EventArgs e)
         {
+            if(CalcType != ' ')
+                OnEqClicked(sender, e);
             double.TryParse(wynikLbl.Text, out pr);
             NumOne = pr;
             Oldequals.Text = NumOne.ToString() + " + ";
@@ -162,7 +171,10 @@ namespace kalkulator
         private void OnUjClicked(object sender, EventArgs e)
         {
             if (!isRooted)
-                wynikLbl.Text = "-"+wynikLbl.Text;
+            {
+                zam = double.Parse(wynikLbl.Text) * (-1);
+                wynikLbl.Text = zam.ToString();
+            }   
             SemanticScreenReader.Announce(wynikLbl.Text);
         }
         private void OnDotClicked(object sender, EventArgs e)
@@ -178,7 +190,13 @@ namespace kalkulator
         }
         private void OnDelClicked(object sender, EventArgs e)
         {
-            wynikLbl.Text = wynikLbl.Text.Remove(wynikLbl.Text.Length - 1);
+            if(wynikLbl.Text.Length<=1)
+            {
+                wynikLbl.Text = "0";
+                isRooted = true;
+            }
+            else
+                wynikLbl.Text = wynikLbl.Text.Remove(wynikLbl.Text.Length - 1);
             SemanticScreenReader.Announce(wynikLbl.Text);
         }
         private void OnCeClicked(object sender, EventArgs e)
